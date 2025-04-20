@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <title>Hari Krishnan M Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&family=Source+Code+Pro:wght@400&display=swap');
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+        }
+        body {
+            width: 100%;
+            background-color: #0a0a0a;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        nav {
+            width: 100%;
+            height: 10vh;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .nav-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .logo {
+            color: #e6e6e6;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .logo span {
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+        }
+        .hamburg,
+        .cancel {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            color: #e6e6e6;
+            display: none;
+            font-size: clamp(2.5rem, 0.5rem + 5vw, 3rem);
+        }
+        .nav-container .links {
+            display: flex;
+        }
+        .nav-container .links a {
+            position: relative;
+            font-size: 1.2rem;
+            color: #e6e6e6;
+            margin: 0 20px;
+            text-decoration: none;
+            font-weight: 550;
+            transition: 0.3s linear;
+        }
+        .nav-container .links a::before {
+            position: absolute;
+            content: "";
+            bottom: -3px;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: #39ff14;
+            transition: 0.2s linear;
+        }
+        .nav-container .links a:hover::before {
+            width: 100%;
+        }
+        .nav-container .links a:hover {
+            color: #39ff14;
+        }
+        .dropdown {
+            z-index: 100;
+            position: absolute;
+            top: 0;
+            transform: translateY(-500px);
+            width: 100%;
+            height: auto;
+            backdrop-filter: blur(4px) brightness(40%);
+            box-shadow: 0 0 20px black;
+            transition: 0.2s linear;
+        }
+        .dropdown .links a {
+            display: flex;
+            color: #e6e6e6;
+            text-decoration: none;
+            justify-content: center;
+            padding: 15px 0;
+            align-items: center;
+            transition: 0.2s linear;
+        }
+        .dropdown .links a:hover {
+            background-color: #39ff14;
+            color: #0a0a0a;
+        }
+        section {
+            width: 100%;
+            min-height: 90vh;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            padding: 20px;
+        }
+        section.active {
+            display: flex;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        .main-container .image {
+            width: 150px;
+            height: 150px;
+            border-radius: 100%;
+            overflow: hidden;
+            box-shadow: 0 0 30px #39ff14;
+            position: relative;
+        }
+        .main-container .image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(80%) contrast(120%);
+        }
+        .main-container .image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 100%;
+            border: 3px solid transparent;
+            border-top-color: #39ff14;
+            animation: spin 4s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .main-container .image:hover {
+            animation: animate 1.5s ease-in-out infinite;
+        }
+        @keyframes animate {
+            0% { scale: 1; }
+            50% { scale: 1.05; }
+            100% { scale: 1; }
+        }
+        .main-container .content {
+            color: #e6e6e6;
+            width: 40%;
+            min-height: 100px;
+            text-align: center;
+        }
+        .content h1 {
+            font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+            font-weight: 700;
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+        }
+        .content h1 span {
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+        }
+        .content .typewriter {
+            font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            color: #e6e6e6;
+        }
+        .content .typewriter-text {
+            color: #39ff14;
+            text-shadow: 0 0 10px #39ff14;
+            transition: all 0.2s ease;
+        }
+        .content .typewriter label {
+            color: #39ff14;
+            font-size: clamp(1rem, 1rem + 5vw, 2.5rem);
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+        }
+        .content .description-typewriter {
+            font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            color: #e6e6e6;
+        }
+        .content .description-typewriter-text {
+            color: #e6e6e6;
+            text-shadow: 0 0 5px #39ff14;
+        }
+        .content .description-typewriter label {
+            color: #e6e6e6;
+            font-size: clamp(0.4rem, 0.2rem + 9vw, 1rem);
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        .content ul {
+            list-style: none;
+            text-align: left;
+            margin-left: 20px;
+        }
+        .social-links i {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 3rem;
+            height: 3rem;
+            background-color: transparent;
+            border: 0.2rem solid #39ff14;
+            border-radius: 50%;
+            color: #39ff14;
+            margin: 5px 15px;
+            font-size: 1.5rem;
+            transition: 0.2s linear;
+        }
+        .social-links i:hover {
+            scale: 1.3;
+            color: #0a0a0a;
+            background-color: #39ff14;
+            box-shadow: 0 0 10px #39ff14;
+        }
+        .content button, .content a.download-btn {
+            width: 50%;
+            height: 6vh;
+            margin: 30px;
+            background-color: #0a0a0a;
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            outline: none;
+            font-size: 120%;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: 0.2s linear;
+            text-decoration: none;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .content button:hover, .content a.download-btn:hover {
+            scale: 1.1;
+            color: #0a0a0a;
+            background-color: #39ff14;
+            box-shadow: 0 0 20px #39ff14;
+        }
+        /* Back Button */
+        .back-btn-container {
+            position: fixed;
+            top: 12vh;
+            left: 20px;
+            z-index: 999;
+            display: none;
+        }
+        .back-btn {
+            background-color: #0a0a0a;
+            color: #39ff14;
+            border: 2px solid #39ff14;
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+        }
+        .back-btn i {
+            margin-right: 8px;
+            transition: all 0.3s ease;
+        }
+        .back-btn:hover {
+            transform: translateX(-5px);
+            background-color: #39ff14;
+            color: #0a0a0a;
+            box-shadow: 0 0 25px #39ff14;
+        }
+        .back-btn:hover i {
+            transform: translateX(-3px);
+        }
+        /* Projects Section */
+        #projects {
+            display: none;
+            padding: 50px 20px;
+            background-color: #0a0a0a;
+        }
+        #projects.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .projects-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .project-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .project-header h1 {
+            font-size: 2.5rem;
+            color: #39ff14;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px #39ff14;
+        }
+        .project-header p {
+            color: #e6e6e6;
+            font-size: 1.1rem;
+        }
+        .project-card {
+            display: inline-block;
+            background-color: #1a1a1a;
+            border: 5px solid #39ff14;
+            border-radius: 15px;
+            padding: 20px;
+            width: 350px;
+            height: 300px;
+            vertical-align: top;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #39ff14;
+        }
+        .project-title {
+            font-size: 1.8rem;
+            color: #39ff14;
+            margin-bottom: 10px;
+            text-shadow: 0 0 5px #39ff14;
+            word-wrap: break-word;
+            padding: 0 10px;
+        }
+        .project-subtitle {
+            font-size: 1.2rem;
+            color: #e6e6e6;
+            text-shadow: 0 0 3px #39ff14;
+            word-wrap: break-word;
+            padding: 0 10px;
+        }
+        /* Project Modal */
+        .project-modal, .achievement-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1001;
+            justify-content: center;
+            align-items: center;
+            overflow-y: auto;
+        }
+        .modal-content {
+            background-color: #1a1a1a;
+            border: 5px solid #39ff14;
+            border-radius: 15px;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 0 20px #39ff14;
+            position: relative;
+            margin: 20px 0;
+        }
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 24px;
+            color: #e6e6e6;
+            cursor: pointer;
+            transition: 0.2s linear;
+        }
+        .modal-close:hover {
+            color: #39ff14;
+            scale: 1.2;
+        }
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            border: 2px solid #39ff14;
+        }
+        .modal-title {
+            font-size: 2rem;
+            color: #39ff14;
+            margin-bottom: 15px;
+            text-shadow: 0 0 5px #39ff14;
+        }
+        .modal-description {
+            color: #e6e6e6;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .modal-features {
+            text-align: left;
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+        .modal-features li {
+            margin-bottom: 10px;
+            color: #e6e6e6;
+            font-size: 1rem;
+        }
+        .modal-link {
+            display: inline-block;
+            background-color: #39ff14;
+            color: #0a0a0a;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        .modal-link:hover {
+            background-color: #0a0a0a;
+            color: #39ff14;
+            box-shadow: 0 0 15px #39ff14;
+        }
+        /* Achievement Boxes */
+        .achievement-box {
+            background-color: #1a1a1a;
+            border: 2px solid #39ff14;
+            border-radius: 10px;
+            padding: 15px 20px;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            margin: 10px 0;
+            max-width: 600px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s ease;
+        }
+        .achievement-box:hover {
+            background-color: rgba(57, 255, 20, 0.1);
+        }
+        .achievement-box .view-btn {
+            display: none;
+            background-color: #39ff14;
+            color: #0a0a0a;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .achievement-box:hover .view-btn {
+            display: inline-block;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .achievement-box .view-btn:hover {
+            background-color: #0a0a0a;
+            color: #39ff14;
+            box-shadow: 0 0 10px #39ff14;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        /* Certifications Section */
+        #certifications .cert-hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #certifications .cert-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 2rem + 5vw, 3.5rem);
+            color: #39ff14;
+            text-shadow: 0 0 15px #39ff14;
+            position: relative;
+            display: inline-block;
+        }
+        #certifications .cert-hero h1::after {
+            content: '_';
+            color: #39ff14;
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+        }
+        #certifications .cert-hero p {
+            font-family: 'Source+Code+Pro', monospace;
+            color: #e6e6e6;
+            font-size: clamp(0.8rem, 0.8rem + 2vw, 1.2rem);
+            margin-top: 10px;
+        }
+        .certifications-list {
+            width: 100%;
+            max-width: 1200px;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        .certifications-list::-webkit-scrollbar {
+            height: 8px;
+        }
+        .certifications-list::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        .certifications-list::-webkit-scrollbar-thumb {
+            background: #39ff14;
+            border-radius: 4px;
+        }
+        .certification-card {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 2px solid #39ff14;
+            border-radius: 15px;
+            padding: 20px;
+            margin-right: 20px;
+            width: 300px;
+            min-height: 300px;
+            vertical-align: top;
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .certification-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(57, 255, 20, 0.2) 0%, transparent 70%);
+            transform: rotate(45deg);
+            transition: all 0.5s ease;
+        }
+        .certification-card:hover::before {
+            transform: rotate(45deg) translate(20%, 20%);
+        }
+        .certification-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.6);
+        }
+        .certification-card .icon {
+            margin-bottom: 15px;
+            z-index: 1;
+        }
+        .certification-card .icon svg {
+            width: 40px;
+            height: 40px;
+            filter: drop-shadow(0 0 5px #39ff14);
+        }
+        .certification-card .cert-content {
+            z-index: 1;
+            animation: textBlink 1.5s infinite;
+        }
+        @keyframes textBlink {
+            0% { opacity: 1; }
+            50% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        .certification-card .cert-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            color: #39ff14;
+            font-size: 1.2rem;
+            text-shadow: 0 0 8px #39ff14;
+            margin-bottom: 10px;
+            word-wrap: break-word;
+        }
+        .certification-card .cert-content ul {
+            font-family: 'Source+Code+Pro', monospace;
+            color: #e6e6e6;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            list-style-type: disc;
+            padding-left: 20px;
+            max-height: 180px;
+            overflow-y: auto;
+        }
+        .certification-card .cert-content ul li {
+            margin-bottom: 8px;
+            word-wrap: break-word;
+        }
+        .certification-card .cert-content ul::-webkit-scrollbar {
+            width: 4px;
+        }
+        .certification-card .cert-content ul::-webkit-scrollbar-thumb {
+            background: #39ff14;
+            border-radius: 2px;
+        }
+        /* Education Section */
+        #education {
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #3b5998, #8e44ad, #009688);
+            animation: fadeInGradient 1.5s ease-in-out forwards;
+        }
+        @keyframes fadeInGradient {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        #education .edu-hero {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        #education .edu-hero h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 2rem + 5vw, 3.5rem);
+            color: #39ff14;
+            text-shadow: 0 0 15px #39ff14;
+            position: relative;
+            display: inline-block;
+        }
+        #education .edu-hero h1::after {
+            content: '_';
+            color: #39ff14;
+            animation: blink 0.7s infinite;
+            margin-left: 5px;
+        }
+        #education .edu-hero p {
+            font-family: 'Source+Code+Pro', monospace;
+            color: #e6e6e6;
+            font-size: clamp(0.8rem, 0.8rem + 2vw, 1.2rem);
+            margin-top: 10px;
+        }
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            width: 100%;
+        }
+        .education-card {
+            background-color: #0a0a0a;
+            border: 2px solid #39ff14;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(57, 255, 20, 0.1), rgba(0, 150, 136, 0.2));
+            opacity: 0.5;
+            z-index: 0;
+        }
+        .education-card:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 0 25px rgba(57, 255, 20, 0.5);
+        }
+        .education-card .icon {
+            margin-bottom: 10px;
+        }
+        .education-card .icon svg {
+            width: 40px;
+            height: 40px;
+        }
+        .education-card .edu-content {
+            position: relative;
+            z-index: 1;
+        }
+        .education-card .edu-content h3 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            color: #39ff14;
+            font-size: 1.2rem;
+            text-shadow: 0 0 5px #39ff14;
+        }
+        .education-card .edu-content p {
+            font-family: 'Source+Code+Pro', monospace;
+            color: #e6e6e6;
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+        @media (max-width: 884px) {
+            nav .logo {
+                position: absolute;
+                top: 16px;
+                left: 15px;
+                font-size: 1.5rem;
+            }
+            .main-container {
+                flex-direction: column;
+            }
+            .nav-container .links {
+                display: none;
+            }
+            .hamburg,
+            .cancel {
+                display: block;
+            }
+            .main-container .content {
+                width: 80%;
+            }
+            .social-links i {
+                width: 2.5rem;
+                height: 2.5rem;
+                font-size: 1.5rem;
+            }
+            .main-container .image {
+                width: 120px;
+                height: 120px;
+            }
+            .back-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            .modal-content {
+                width: 90%;
+            }
+            .achievement-box, .certification-card, .education-card, .project-card {
+                width: 300px;
+                padding: 15px;
+            }
+            #projects .project-header h1, #certifications .cert-hero h1, #education .edu-hero h1 {
+                font-size: clamp(1.5rem, 1.5rem + 3vw, 2.5rem);
+            }
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+            .project-image {
+                height: 150px;
+            }
+            .modal-image {
+                height: 250px;
+            }
+        }
+        @media (max-width: 440px) {
+            .main-container .image {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 0px;
+            }
+            .main-container .content {
+                width: 90%;
+            }
+            .main-container button, .main-container a.download-btn {
+                margin-top: 15px;
+            }
+            .back-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            .modal-content {
+                width: 95%;
+            }
+            .achievement-box, .certification-card, .education-card, .project-card {
+                width: 260px;
+                padding: 10px;
+            }
+            .certification-card .icon svg, .education-card .icon svg {
+                width: 30px;
+                height: 30px;
+            }
+            #projects .project-header h1, #certifications .cert-hero h1, #education .edu-hero h1 {
+                font-size: clamp(1.2rem, 1.2rem + 2vw, 2rem);
+            }
+            .project-image {
+                height: 120px;
+            }
+            .modal-image {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <div class="logo" data-aos="zoom-in" data-aos-duration="1500">
+                Hari <span>Krishnan</span>
+            </div>
+            <div class="links">
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="100"><a href="#" onclick="showSection('home')">Home</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="200"><a href="#" onclick="showSection('about')">About</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300"><a href="#" onclick="showSection('projects')">Projects</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"><a href="#" onclick="showSection('education')">Education</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="500"><a href="#" onclick="showSection('achievements')">Achievements</a></div>
+                <div class="link" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600"><a href="#" onclick="showSection('certifications')">Certifications</a></div>
+            </div>
+            <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+        </div>
+        <div class="dropdown">
+            <div class="links">
+                <a href="#" onclick="showSection('home')">Home</a>
+                <a href="#" onclick="showSection('about')">About</a>
+                <a href="#" onclick="showSection('projects')">Projects</a>
+                <a href="#" onclick="showSection('education')">Education</a>
+                <a href="#" onclick="showSection('achievements')">Achievements</a>
+                <a href="#" onclick="showSection('certifications')">Certifications</a>
+                <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+            </div>
+        </div>
+    </nav>
+
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> Back
+        </button>
+    </div>
+
+    <section id="home" class="active">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                <img src="C:\Users\Admin\Downloads\hari.png-removebg-preview.png" alt="Hari Krishnan M">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">Hey I'm <span>Hari Krishnan</span></h1>
+                <div class="typewriter" data-aos="fade-right" data-aos-duration="1500" data-aos-delay="900"><span style="color: #e6e6e6;">I'm a </span><span class="typewriter-text"></span><label for="">|</label></div>
+                <div class="description-typewriter" data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100"><span class="description-typewriter-text"></span><label for="">|</label></div>
+                <div class="social-links">
+                    <a href="https://github.com/krishnan4" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1300"><i class="fa-brands fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/hari-krishanan-m/" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1400"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/h._.ri._.96/" target="_blank" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="1500"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+                <div class="btn" data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="1800">
+                    <a href="https://drive.google.com/file/d/1cU-LQ-32uBQGdl7f0lB_HtUh8ct2V0o6/view?usp=sharing" class="download-btn" download="Hari_Krishnan_M_Resume.pdf">Download Resume</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                <img src="C:\Users\Admin\Downloads\hari.png-removebg-preview.png" alt="Hari Krishnan M About">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">About Me</h1>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">I enjoy crafting engaging content and exploring creative solutions to real-world challenges. With a keen interest in technology, I strive to deliver impactful and innovative work.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="projects-container">
+            <div class="project-header" data-aos="fade-up">
+                <h1>My Projects</h1>
+                <p>Click to explore innovative solutions I've built</p>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-project="plant-disease">
+                <img src="https://res.cloudinary.com/drt2tlz1j/images/c_scale,w_448,h_299,dpr_2/f_auto,q_auto/v1689125853/fn1/12222/12222.png?_i=AA" alt="Plant Disease Prediction" class="project-image" id="image-plant-disease">
+                <h3 class="project-title">Plant Disease Prediction</h3>
+                <p class="project-subtitle">Prediction</p>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-project="od-form">
+                <img src="https://img.freepik.com/free-vector/document-vector-colorful-design_341269-1262.jpg?semt=ais_hybrid&w=740" alt="Online OD Form" class="project-image" id="image-od-form">
+                <h3 class="project-title">Online OD Form</h3>
+                <p class="project-subtitle">Form Submission</p>
+            </div>
+            
+            <div class="project-card" data-aos="fade-up" data-project="patient-care">
+                <img src="https://media.istockphoto.com/id/1308117481/vector/elderly-care-concept-social-worker-or-volunteer-takes-care-of-and-helps-a-bedridden-elderly.jpg?s=612x612&w=0&k=20&c=BOreJuGz6xnGfSdCp2dnIIqzZA-qdNAdogQmh0FzoU4=" alt="Patient Care Analysis" class="project-image" id="image-patient-care">
+                <h3 class="project-title">Patient Care Analysis</h3>
+                <p class="project-subtitle">Analysis</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                <img src="C:\Users\Admin\Downloads\hari.png-removebg-preview.png" alt="Hari Krishnan M Education">
+            </div>
+            <div class="content">
+                <div class="edu-hero" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="700">
+                    <h1>Education_</h1>
+                    <p>Academic milestones shaping my AI and Data Science journey</p>
+                </div>
+                <div class="education-grid" data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">
+                    <div class="education-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                        </div>
+                        <div class="edu-content">
+                            <h3>B.Tech in AI and Data Science</h3>
+                            <p>R M K College of Engineering and Technology, Puduvoyal<br>2022 - 2026</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                        </div>
+                        <div class="edu-content">
+                            <h3>Higher Secondary Certificate</h3>
+                            <p>Vivekananda Matric Hr.Sec.School, Thurappallam<br>Percentage: 84%<br>2020 - 2022</p>
+                        </div>
+                    </div>
+                    <div class="education-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                            </svg>
+                        </div>
+                        <div class="edu-content">
+                            <h3>Secondary School Leaving Certificate</h3>
+                            <p>Vivekananda Matric Hr.Sec.School, Thurappallam<br>Percentage: 88.8%<br>2018 - 2020</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="achievements">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                <img src="C:\Users\Admin\Downloads\hari.png-removebg-preview.png" alt="Hari Krishnan M Achievements">
+            </div>
+            <div class="content">
+                <h1 data-aos="fade-left" data-aos-duration="1500" data-aos-delay="700">Key Achievements</h1>
+                <p data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">
+                    <div class="achievement-box">
+                        <span>Achieved Third Prize in AI ODYSSEY 1.0 for innovative model design.</span>
+                        <button class="view-btn" onclick="showAchievementModal('ai-odyssey')">View</button>
+                    </div>
+                    <div class="achievement-box">
+                        <span>Finalist in Socio-Innovation Track of Action Plan 23-24 organized by Abhyuday, IIT Bombay.</span>
+                        <button class="view-btn" onclick="showAchievementModal('socio-innovation')">View</button>
+                    </div>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="main-container">
+            <div class="image" data-aos="zoom-out" data-aos-duration="3000">
+                <img src="C:\Users\Admin\Downloads\hari.png-removebg-preview.png" alt="Hari Krishnan M Certifications">
+            </div>
+            <div class="content">
+                <div class="cert-hero" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="700">
+                    <h1>Certifications_</h1>
+                    <p>Credentials showcasing expertise in AI, Data Science, and Technology</p>
+                </div>
+                <div class="certifications-list" data-aos="flip-down" data-aos-duration="1500" data-aos-delay="1100">
+                    <div class="certification-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Oracle AI Vector Search Certified Professional</h3>
+                            <ul>
+                                <li>Expertise in Oracle's AI Vector Search</li>
+                                <li>Building intelligent AI-driven applications</li>
+                                <li>Scalable AI solutions</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-content">
+                            <h3>NPTEL: Data Science Using Python</h3>
+                            <ul>
+                                <li>ELITE certification</li>
+                                <li>Python-based data science</li>
+                                <li>IoT applications</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-content">
+                            <h3>NPTEL: Design Thinking</h3>
+                            <ul>
+                                <li>Elite + Silver certification</li>
+                                <li>Innovative problem-solving</li>
+                                <li>Design thinking methodologies</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-content">
+                            <h3>Cisco: Python Essentials</h3>
+                            <ul>
+                                <li>Comprehensive Python training</li>
+                                <li>Networking applications</li>
+                                <li>Automation skills</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="certification-card">
+                        <div class="icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#39ff14" stroke-width="2">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                        </div>
+                        <div class="cert-content">
+                            <h3>NPTEL: Internet of Things</h3>
+                            <ul>
+                                <li>ELITE certification</li>
+                                <li>IoT system design</li>
+                                <li>Smart device connectivity</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="project-modal" class="project-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeProjectModal()">×</span>
+            <img src="" alt="Project Image" class="modal-image" id="modal-image">
+            <h2 class="modal-title" id="modal-title"></h2>
+            <p class="modal-description" id="modal-description"></p>
+            <ul class="modal-features" id="modal-features"></ul>
+            <a href="#" class="modal-link" id="modal-link" target="_blank"><i class="fab fa-github"></i> View on GitHub</a>
+        </div>
+    </div>
+
+    <div id="achievement-modal" class="achievement-modal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeAchievementModal()">×</span>
+            <h2 class="modal-title" id="achievement-modal-title"></h2>
+            <p class="modal-description" id="achievement-modal-description"></p>
+            <ul class="modal-features" id="achievement-modal-features"></ul>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init({offset: 0});
+
+        function hamburg() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(0px)";
+        }
+        function cancel() {
+            const navbar = document.querySelector(".dropdown");
+            navbar.style.transform = "translateY(-500px)";
+        }
+
+        // Typewriter Effect
+        const baseText = "I'm a ";
+        const texts = ["Content Editor ", "Tech Enthusiast ", "Innovator "];
+        let speed = 100;
+        const textElements = document.querySelector(".typewriter-text");
+        let textIndex = 0;
+        let characterIndex = 0;
+        let isFirstCycleComplete = false;
+
+        function typeWriter() {
+            if (characterIndex === 0) {
+                textElements.innerHTML = "";
+                textElements.style.color = "#39ff14";
+            }
+            if (characterIndex < texts[textIndex].length) {
+                textElements.innerHTML = texts[textIndex].slice(0, characterIndex + 1);
+                characterIndex++;
+                setTimeout(typeWriter, speed);
+            } else {
+                if (textIndex < texts.length - 1) {
+                    textIndex++;
+                    characterIndex = 0;
+                    setTimeout(typeWriter, 500);
+                } else {
+                    if (!isFirstCycleComplete) {
+                        isFirstCycleComplete = true;
+                        startDescriptionTypewriter();
+                    }
+                    setTimeout(eraseText, 1000);
+                }
+            }
+        }
+
+        function eraseText() {
+            if (textElements.innerHTML.length > 0) {
+                textElements.innerHTML = textElements.innerHTML.slice(0, -1);
+                setTimeout(eraseText, 50);
+            } else {
+                textIndex = 0;
+                characterIndex = 0;
+                if (isFirstCycleComplete) {
+                    setTimeout(typeWriter, 500);
+                } else {
+                    setTimeout(typeWriter, 500);
+                }
+            }
+        }
+
+        // Description Typewriter
+        const descriptionText = "I am a dedicated Content Editor with a passion for technology and innovation.";
+        const descriptionElements = document.querySelector(".description-typewriter-text");
+        let descCharacterIndex = 0;
+
+        function startDescriptionTypewriter() {
+            if (descCharacterIndex < descriptionText.length) {
+                descriptionElements.innerHTML = descriptionText.slice(0, descCharacterIndex + 1);
+                descCharacterIndex++;
+                setTimeout(startDescriptionTypewriter, 50);
+            }
+        }
+
+        // Section Toggle
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.classList.remove('active'));
+            document.getElementById(sectionId).classList.add('active');
+            updateBackButtonVisibility(sectionId);
+            history.pushState(null, null, `#${sectionId}`);
+        }
+
+        // Back Button Functionality
+        const sectionOrder = ['home', 'about', 'projects', 'education', 'achievements', 'certifications'];
+        function goBack() {
+            const currentSection = document.querySelector('section.active').id;
+            const currentIndex = sectionOrder.indexOf(currentSection);
+            if (currentIndex > 0) {
+                showSection(sectionOrder[currentIndex - 1]);
+            }
+        }
+
+        // Show/Hide Back Button
+        function updateBackButtonVisibility(sectionId) {
+            const backBtnContainer = document.querySelector('.back-btn-container');
+            if (sectionId === 'home') {
+                backBtnContainer.style.display = 'none';
+            } else {
+                backBtnContainer.style.display = 'block';
+            }
+        }
+
+        // Achievement Modal Functionality
+        function showAchievementModal(achievementId) {
+            const modal = document.getElementById('achievement-modal');
+            const modalTitle = document.getElementById('achievement-modal-title');
+            const modalDescription = document.getElementById('achievement-modal-description');
+            const modalFeatures = document.getElementById('achievement-modal-features');
+
+            if (achievementId === 'ai-odyssey') {
+                modalTitle.textContent = 'Criminal Face Detection System – Project Description';
+                modalDescription.innerHTML = 'The Criminal Face Detection System is an AI-powered surveillance tool designed to enhance public safety by automatically identifying individuals with criminal records using facial recognition technology. Leveraging computer vision and deep learning models, this system scans live video feeds or images from security cameras and matches faces against a criminal database. Upon detecting a match, it instantly triggers an alert to authorities for real-time response. The system can be integrated with existing CCTV networks, enabling law enforcement agencies to monitor public spaces, airports, railway stations, and other high-security zones more efficiently. The project aims to reduce manual identification errors and speed up the detection process to prevent crime proactively.';
+                modalFeatures.innerHTML = '<li>Real-time facial recognition from live video feeds.</li><li>Database integration for known criminal profiles.</li><li>Instant alert system for security response.</li><li>High accuracy using deep learning (e.g., CNNs).</li><li>Can work under various lighting and environmental conditions.</li>';
+            } else if (achievementId === 'socio-innovation') {
+                modalTitle.textContent = 'Air Rooftop Ventilator That Generates Electricity – Project Description';
+                modalDescription.innerHTML = 'This innovative project introduces a Hybrid Rooftop Ventilator that not only ventilates buildings by releasing trapped hot air but also generates electricity in the process. It harnesses the kinetic energy from rising hot air and wind passing through the ventilator to spin a small turbine attached to a generator. This dual-purpose system provides passive cooling, improving indoor air quality, and simultaneously produces renewable energy that can power small appliances, sensors, or be stored for later use. It\'s an eco-friendly solution suitable for homes, factories, and warehouses aiming to reduce heat load and energy costs sustainably.';
+                modalFeatures.innerHTML = '<li>Passive ventilation reduces indoor temperatures.</li><li>Turbine mechanism converts airflow into electricity.</li><li>No external power source required.</li><li>Low maintenance and sustainable design.</li><li>Ideal for hot climates and industrial settings.</li>';
+            }
+
+            modal.style.display = 'flex';
+        }
+
+        function closeAchievementModal() {
+            const modal = document.getElementById('achievement-modal');
+            modal.style.display = 'none';
+        }
+
+        // Project Modal Functionality
+        const projectData = {
+            'plant-disease': {
+                image: 'https://res.cloudinary.com/drt2tlz1j/images/c_scale,w_448,h_299,dpr_2/f_auto,q_auto/v1689125853/fn1/12222/12222.png?_i=AA',
+                title: 'Plant Disease Prediction',
+                description: 'A deep learning solution using CNN and Streamlit to detect plant diseases from leaf images, helping farmers identify issues early and improve crop yield.',
+                features: [
+                    'Utilizes convolutional neural networks for accurate image classification',
+                    'Streamlit-based user interface for easy image uploads',
+                    'Supports early detection for agricultural improvement'
+                ],
+                link: 'https://github.com/krishnan4/plant-disease-prediction'
+            },
+            'od-form': {
+                image: 'https://img.freepik.com/free-vector/document-vector-colorful-design_341269-1262.jpg?semt=ais_hybrid&w=740',
+                title: 'Online OD Form',
+                description: 'A web application for submitting and tracking on-duty leave requests, streamlining the approval process for academic and professional activities.',
+                features: [
+                    'Automated form submission with document upload',
+                    'Real-time status tracking and email notifications',
+                    'Secure routing to appropriate approval authorities'
+                ],
+                link: 'https://github.com/krishnan4/online-OD-form'
+            },
+            'patient-care': {
+                image: 'https://media.istockphoto.com/id/1308117481/vector/elderly-care-concept-social-worker-or-volunteer-takes-care-of-and-helps-a-bedridden-elderly.jpg?s=612x612&w=0&k=20&c=BOreJuGz6xnGfSdCp2dnIIqzZA-qdNAdogQmh0FzoU4=',
+                title: 'Patient Care Analysis',
+                description: 'A data-driven system to analyze patient treatment effectiveness and support community healthcare outreach initiatives.',
+                features: [
+                    'Data analytics for treatment outcome evaluation',
+                    'Outreach programs for underserved communities',
+                    'Visualization dashboards for healthcare insights'
+                ],
+                link: 'https://github.com/krishnan4/patient-care-analysis'
+            }
+        };
+
+        function showProjectModal(projectId) {
+            const modal = document.getElementById('project-modal');
+            const modalImage = document.getElementById('modal-image');
+            const modalTitle = document.getElementById('modal-title');
+            const modalDescription = document.getElementById('modal-description');
+            const modalFeatures = document.getElementById('modal-features');
+            const modalLink = document.getElementById('modal-link');
+
+            const project = projectData[projectId];
+            modalImage.src = document.getElementById(`image-${projectId}`).src || project.image;
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            modalFeatures.innerHTML = project.features.map(feature => `<li>${feature}</li>`).join('');
+            modalLink.href = project.link;
+
+            modal.style.display = 'flex';
+        }
+
+        function closeProjectModal() {
+            const modal = document.getElementById('project-modal');
+            modal.style.display = 'none';
+        }
+
+        // Project Card Click Handler
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const projectId = card.getAttribute('data-project');
+                showProjectModal(projectId);
+            });
+        });
+
+        // Initialize
+        window.onload = function() {
+            showSection('home');
+            typeWriter();
+            document.querySelector('.back-btn-container').style.display = 'none';
+        };
+
+        // Handle Navigation Clicks
+        document.querySelectorAll('.nav-container .links a, .dropdown .links a').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = e.target.getAttribute('onclick')?.match(/showSection\('(.+)'\)/)?.[1];
+                if (sectionId) {
+                    showSection(sectionId);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
