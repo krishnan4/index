@@ -1,238 +1,49 @@
-Hari Krishnan M Portfolio
+# 🌐 Hari Krishnan M – Portfolio Website
 
-Welcome to my personal portfolio website! This project showcases my skills, projects, education, achievements, and certifications as a B.Tech student in AI and Data Science. Built with modern web technologies, it provides an interactive and visually appealing experience to highlight my journey and expertise.
+Welcome to my **personal portfolio website**!  
+This project is a digital showcase of my:
 
-Table of Contents
+- 🎓 Education and background as a B.Tech student in **Artificial Intelligence & Data Science**
+- 💡 Technical skills and areas of expertise
+- 💼 Projects that demonstrate practical knowledge
+- 🏆 Achievements and certifications
+- 📜 Contact and social links
 
+The website is built with **modern web technologies** to provide an interactive, responsive, and visually engaging experience. It's a reflection of my journey in tech and a hub for everything I've accomplished so far.
 
+---
 
+## 🚀 Features
 
+- Clean and responsive UI/UX design
+- Smooth navigation between sections
+- Dynamic project highlights
+- Contact form or quick contact links
+- Easily extendable and maintainable codebase
 
-Overview
+---
 
+## 🛠️ Technologies Used
 
+- HTML5, CSS3, JavaScript
+- React.js / Next.js *(if used)*
+- Tailwind CSS / Bootstrap *(if used)*
+- Git & GitHub for version control
+- Figma *(for design, if applicable)*
 
-Features
+---
 
+## 🔗 Connect with Me
 
+- 📧 **Email**: [harimr1409@gmail.com](mailto:harimr1409@gmail.com)
+- 💼 **LinkedIn**: [linkedin.com/in/hari-krishanan-m](https://www.linkedin.com/in/hari-krishanan-m/)
+- 💻 **GitHub**: [github.com/krishnan4](https://github.com/krishnan4)
+- 📸 **Instagram**: [@h..ri..96](https://www.instagram.com/h..ri..96/)
 
-Technologies Used
+---
 
+## 📌 Project Status
 
+This portfolio is **actively maintained** and will be updated as I gain more experience and complete new projects.
 
-Installation
-
-
-
-Usage
-
-
-
-Screenshots
-
-
-
-Contributing
-
-
-
-License
-
-
-
-Contact
-
-Overview
-
-This portfolio is a single-page web application designed to present my professional profile, including my academic background, technical projects, certifications, and achievements. It features a responsive design, smooth animations, and interactive elements like modals for project and achievement details, a typewriter effect, and a mobile-friendly navigation system.
-
-Features
-
-
-
-
-
-Responsive Design: Optimized for both desktop and mobile devices with adaptive layouts.
-
-
-
-Interactive Navigation: Sticky navbar with dropdown menus and a back button for seamless section transitions.
-
-
-
-Typewriter Effect: Dynamic text animations to highlight my roles and descriptions.
-
-
-
-Project Showcase: Clickable project cards with modal pop-ups providing detailed descriptions, features, and GitHub links.
-
-
-
-Achievements & Certifications: Highlighted sections with modals and scrollable certification cards.
-
-
-
-Animations: Integrated AOS (Animate on Scroll) library for engaging visual effects.
-
-
-
-Social Links: Quick access to my GitHub, LinkedIn, and Instagram profiles.
-
-Technologies Used
-
-
-
-
-
-HTML5: Semantic markup for the website.
-
-
-
-CSS3: Custom styles with Flexbox, Grid, animations, and media queries for responsiveness.
-
-
-
-JavaScript: Logic for interactivity, including typewriter effects, modals, and section toggling.
-
-
-
-AOS Library: For scroll-triggered animations.
-
-
-
-Font Awesome: For scalable vector icons.
-
-
-
-Google Fonts: Poppins and Source Code Pro for typography.
-
-
-
-External APIs: Cloudinary and Freepik for image hosting.
-
-Installation
-
-To run this portfolio locally:
-
-
-
-
-
-Clone or download the repository:
-
-git clone https://github.com/krishnan4/portfolio.git
-
-
-
-Navigate to the project directory:
-
-cd portfolio
-
-
-
-Open the index.html file in a web browser:
-
-
-
-
-
-Either double-click index.html to open it in a browser, or
-
-
-
-Or, serve it using a development server (recommended):
-
-npm install -g live-server
-live-server
-
-Note: No additional dependencies are required since all libraries are linked via CDN.
-
-Usage
-
-
-
-
-
-Navigation: Use the top navbar or hamburger menu (on mobile) to explore sections like Home, About, Projects, Education, Achievements, and Certifications.
-
-
-
-Project Exploration: Click on project cards to view detailed modals with descriptions, features, and GitHub links.
-
-
-
-Achievements: Click "View" on achievement boxes to open modals with detailed project descriptions.
-
-
-
-Download Resume: Access my resume via the "Download Resume" button in the Home section.
-
-
-
-Social Links: Connect with me on GitHub, LinkedIn, or Instagram using the social icons.
-
-Screenshots
-
-Coming soon! Screenshots of the portfolio's key sections will be added here.
-
-Contributing
-
-Contributions are welcome! If you have suggestions for improvements or find bugs, please follow these steps:
-
-
-
-
-
-Fork the repository.
-
-
-
-Create a new branch:
-
-git checkout -b feature/your-feature-name
-
-
-
-Make your changes and commit them:
-
-git commit -m "Add your message here"
-
-
-
-Push to the branch:
-
-git push origin feature/your-feature-name
-
-
-
-Open a Pull Request on GitHub.
-
-Please ensure your code follows the existing style and includes appropriate comments.
-
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-Contact
-
-Feel free to reach out to me for collaborations or inquiries:
-
-
-
-
-
-Email: [Your Email Address]
-
-
-
-LinkedIn: https://www.linkedin.com/in/hari-krishanan-m/
-
-
-
-GitHub: https://github.com/krishnan4
-
-
-
-Instagram: https://www.instagram.com/h..ri..96/
-
-Thank you for visiting my portfolio! 🚀
+Thank you for visiting my portfolio. Feedback and suggestions are always welcome!
